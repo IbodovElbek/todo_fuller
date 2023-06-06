@@ -22,6 +22,36 @@ initializeNotification()async{
   await flutterLocalNotificationsPlugin.initialize(initializationSettings,
       onDidReceiveNotificationResponse: onDidReceiveNotificationResponse);
 }
+    displayNotification({required String title,required String body})async{
+  print("doing test");
+  var androidNotificationDetails =
+  AndroidNotificationDetails('your channel id', 'your channel name',
+      channelDescription: 'your channel description',
+      importance: Importance.max,
+      priority: Priority.high,
+      ticker: 'ticker');
+  var iOSPlatformChannelSpecifics=new NotificationDetails();
+    }
+
+
+
+
+void requestIOSPermissions(){
+  flutterLocalNotificationsPlugin
+  .resolvePlatformSpecificImplementation<
+  IOSFlutterLocalNotificationsPlugin>()
+      ?.requestPermissions(
+    alert: true,
+    badge: true,
+    sound: true
+  );
+}
+void requestAndPermissions(){
+  flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<
+      AndroidFlutterLocalNotificationsPlugin>()
+      ?.requestPermission();
+}
 Future onDidReceiveNotificationResponse(
     NotificationResponse notificationResponse) async {
   final String? payload = notificationResponse.payload;

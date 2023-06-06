@@ -154,6 +154,8 @@ class _HomePAgeState extends State<HomePAge> {
     // TODO: implement initState
     super.initState();
     notifyHelper=NotifyHelper();
+    notifyHelper.requestIOSPermissions();
+    notifyHelper.requestAndPermissions();
   }
   @override
   Widget build(BuildContext context) {
